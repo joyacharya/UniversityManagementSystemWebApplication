@@ -1,0 +1,51 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Enrollment>
+@{
+    ViewBag.Title = "View Result";
+    ViewBag.Active = "Enrollment";
+}
+
+<h2>View Result</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+
+<div class="form-horizontal" >
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.Label("Student")
+                </div>
+                <div class="controls">
+                    @Html.DropDownList("StudentId", String.Empty)
+                </div>
+            </div>
+        <div class ="control-group">
+            @Html.Partial("_StudentDetails", Model)
+        <div class="controls">
+            <input type="submit" value="Make Pdf" class="btn"/>
+        </div>
+        </div>
+         <div id="section-data">
+             @Html.Partial("_CourseInformation")
+         </div>          
+    }
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#StudentId').change(function () {
+            var id = $('#StudentId :selected').val();
+            $('#section-data').load('@Url.Action("SelectEnrolledStudentInformation")', { studentId: id });
+            $('#StudentDetails').load('@Url.Action("SelectStudentDetails")', { studentId: id });
+        });
+    });
+</script>
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Back to List", "Index")
+    </li>
+</ul>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

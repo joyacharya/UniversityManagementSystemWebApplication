@@ -1,0 +1,74 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Course>
+
+@{
+    ViewBag.Title = "Course Index";
+    ViewBag.Active = "Course";
+}
+
+<h2>Course Index</h2>
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Create New Course", "Create")
+    </li>
+    <li class="previous">
+        @Html.ActionLink("Course Assignment","CourseAssign")
+    </li>
+</ul>
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Credit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Semester.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Teacher.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Credit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CourseId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CourseId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId })
+        </td>
+    </tr>
+}
+
+</table>

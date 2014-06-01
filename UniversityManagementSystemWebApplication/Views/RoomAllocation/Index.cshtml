@@ -1,0 +1,71 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.ClassRoomAllocation>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "Class Room Allocation";
+}
+
+<h2>Index</h2>
+
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Create New", "Create") 
+    </li>
+    
+    <li class="previous">
+        @Html.ActionLink("View Class Schedual Infromation", "ViewClassSchedualInformation") 
+    </li>
+</ul>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Department.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClassRoom.RoomNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Day.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeTo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Department.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassRoom.RoomNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Day.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TimeTo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ClassRoomAllocationId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ClassRoomAllocationId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ClassRoomAllocationId })
+        </td>
+    </tr>
+}
+
+</table>

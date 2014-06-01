@@ -1,0 +1,85 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Enrollment
+
+@{
+    ViewBag.Title = "Enrollment";
+    ViewBag.Active = "Enrollment";
+}
+
+<h2>Enroll a Student</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+
+<div class="form-horizontal">@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.Label("Student")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("StudentId", String.Empty)
+                @Html.ValidationMessageFor(model => model.StudentId)
+            </div>
+        </div>
+            <div class ="control-group">
+                @Html.Partial("~/Views/Shared/_StudentDetails.cshtml", Model)
+            </div>
+        
+        <div class="control-group">
+        <div class="control-label">
+            @Html.Label("Course")
+        </div>
+        <div class="controls">
+            @Html.Partial("_Course")
+            @Html.ValidationMessageFor(model => model.CourseId)
+        </div>
+        </div>
+        <div class="control-group">
+        <div class="control-label">
+            @Html.Label("Date")
+        </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+            <div class="controls">
+                 <input type="submit" value="Create" class="btn"/>
+            </div>
+        </div>
+    </fieldset>
+}
+</div>
+<div class="alert-error">@ViewBag.ErrorMessage</div>
+<div class="alert-success">@ViewBag.Message</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#StudentId').change(function () {
+            var id = $('#StudentId :selected').val();
+            $('#CourseId').load('@Url.Action("SelectCourseForStudent")', { studentId: id });
+            $('#StudentDetails').load('@Url.Action("SelectStudent")', { studentId: id });
+        });
+        $('#StudentDetails').load('@Url.Action("SelectStudent")', { studentId: id });
+    });
+</script>
+<ul class="pager">
+    <li class="previous">
+    @Html.ActionLink("Back to List", "Index")
+    </li>
+</ul>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Date").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}

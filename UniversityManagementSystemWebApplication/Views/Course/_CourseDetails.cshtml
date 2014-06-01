@@ -1,0 +1,20 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Course
+
+<div id="CourseDetails">
+
+
+    <div class="control-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="controls">
+        @Html.TextBoxFor(model => model.Name, new { disabled = "disabled", @readonly = "readonly" })
+    </div>
+
+    <div class="control-label">
+        @Html.LabelFor(model => model.Code)
+    </div>
+    <div class="controls">
+        @Html.TextBoxFor(model => model.Code, new { disabled = "disabled", @readonly = "readonly" })
+    </div>
+    @Html.HiddenFor(model => model.Credit)
+</div>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Enrollment>
+
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "Enrollment";
+}
+
+<h2>Index</h2>
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Create New", "Create")
+    </li>
+    <li class="previous">
+        @Html.ActionLink("Student Result Entry","StudentResultEntry")
+    </li>
+    <li class="previous">
+        @Html.ActionLink("View Student Result","ViewResult")
+    </li>
+</ul>
+
+<table class="table table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Student.RegNo)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.Course.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GradeLetter.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Student.RegNo)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Course.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem =>  item.GradeLetter.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentId })
+        </td>
+    </tr>
+}
+
+</table>

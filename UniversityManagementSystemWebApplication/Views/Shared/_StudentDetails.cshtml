@@ -1,0 +1,24 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Enrollment
+
+<div id="StudentDetails">
+    <div class="control-label">
+        @Html.LabelFor(model => model.Student.Name)
+    </div>
+    <div class="controls">
+        @Html.TextBoxFor(model => model.Student.Name, new { disabled = "disabled", @readonly = "readonly" })
+    </div>
+
+    <div class="control-label">
+        @Html.LabelFor(model => model.Student.Email)
+    </div>
+    <div class="controls">
+        @Html.TextBoxFor(model => model.Student.Email, new { disabled = "disabled", @readonly = "readonly" })
+    </div>
+    
+    <div class="control-label">
+        @Html.LabelFor(model => model.Student.Department.Name)
+    </div>
+    <div class="controls">
+        @Html.TextBoxFor(model => model.Student.Department.Name, new { disabled = "disabled", @readonly = "readonly" })
+    </div>
+</div>

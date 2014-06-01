@@ -1,0 +1,186 @@
+<!--
+    This DTD can be used to validate the output of XmlWriter.
+    XmlWriter is part of the iText library by lowagie.com
+
+    For further information, see: http://www.lowagie.com/iText/
+
+    Copyright 2001 by Bruno Lowagie
+    All Rights Reserved.
+-->
+
+<!ENTITY % chunk.content "#PCDATA | newline | newpage | entity | ignore">
+<!ENTITY % phrase.content "chunk | anchor | phrase | list | table | annotation">
+
+<!ENTITY % color.attributes
+"red      CDATA   #IMPLIED
+ green    CDATA   #IMPLIED
+ blue     CDATA   #IMPLIED"
+>
+<!ENTITY % font.attributes
+"font     CDATA   #IMPLIED
+ size     CDATA   #IMPLIED
+ style    CDATA   #IMPLIED
+ color    CDATA   #IMPLIED
+ %color.attributes;"
+>
+<!ENTITY % phrase.attributes
+"leading  CDATA   #IMPLIED"
+>
+<!ENTITY % paragraph.attributes
+"align    CDATA   #IMPLIED"
+>
+<!ENTITY % indentation.attributes
+"indentationleft    CDATA   #IMPLIED
+ indentationright   CDATA   #IMPLIED"
+>
+<!ENTITY % section.attributes
+"depth              CDATA   #IMPLIED
+ numberdepth        CDATA   #IMPLIED
+ indent             CDATA   #IMPLIED"
+>
+<!ENTITY % rectangle.attributes
+"bgred              CDATA   #IMPLIED
+ bggreen            CDATA   #IMPLIED
+ bgblue             CDATA   #IMPLIED
+ width              CDATA   #IMPLIED
+ bordercolor        CDATA   #IMPLIED
+ backgroundcolor    CDATA   #IMPLIED
+ left               CDATA   #IMPLIED
+ right              CDATA   #IMPLIED
+ top                CDATA   #IMPLIED
+ bottom             CDATA   #IMPLIED
+ borderwidth        CDATA   #IMPLIED
+ grayfill           CDATA   #IMPLIED"
+>
+	
+<!ELEMENT itext (%chunk.content; | %phrase.content; | chapter | paragraph)*>
+<!ATTLIST itext
+	title		CDATA	#IMPLIED
+	subject		CDATA	#IMPLIED
+	keywords	CDATA	#IMPLIED
+	author		CDATA	#IMPLIED
+>
+
+<!ELEMENT symbol EMPTY>
+<!ATTLIST symbol
+    id      CDATA #REQUIRED
+>
+		  
+<!ELEMENT chunk (%chunk.content;)*> 
+<!ATTLIST chunk
+    %font.attributes;
+    subsupscript        CDATA   #IMPLIED
+    localgoto           CDATA   #IMPLIED
+    localdestination    CDATA   #IMPLIED
+    generictag          CDATA   #IMPLIED
+>
+
+<!ELEMENT phrase (%chunk.content; | %phrase.content;)*> 
+<!ATTLIST phrase
+    %font.attributes;
+    %phrase.attributes;
+>
+
+<!ELEMENT anchor (%chunk.content; | %phrase.content;)*> 
+<!ATTLIST anchor
+%font.attributes;
+    %phrase.attributes;
+    name       CDATA   #IMPLIED
+    reference  CDATA   #IMPLIED
+>
+
+<!ELEMENT paragraph (%chunk.content; | %phrase.content; | image)*> 
+<!ATTLIST paragraph
+    %font.attributes;
+    %phrase.attributes;
+    %indentation.attributes;
+    %paragraph.attributes;
+>
+
+<!ELEMENT list (listitem | ignore)*> 
+<!ATTLIST list
+    %font.attributes;
+    %indentation.attributes;
+    numbered       CDATA   #IMPLIED
+    symbolindent   CDATA   #IMPLIED
+    first          CDATA   #IMPLIED
+    listsymbol     CDATA   #IMPLIED
+>
+
+<!ELEMENT listitem (%chunk.content; | %phrase.content; | image)*> 
+<!ATTLIST listitem
+    %font.attributes;
+    %phrase.attributes;
+    %indentation.attributes;
+    %paragraph.attributes;
+>
+
+<!ELEMENT chapter (title?, sectioncontent) >
+<!ATTLIST chapter
+    %section.attributes;
+    %indentation.attributes;
+>
+
+<!ELEMENT section (title?, sectioncontent) >
+<!ATTLIST section
+    %section.attributes;
+    %indentation.attributes;
+>
+
+<!ELEMENT title (%chunk.content; | phrase | chunk | annotation)*> 
+<!ATTLIST title
+    %font.attributes;
+    %phrase.attributes;
+    %indentation.attributes;
+    %paragraph.attributes;
+>
+
+<!ELEMENT sectioncontent (%chunk.content; | %phrase.content; | section | paragraph | image)*>
+
+<!ELEMENT table (cell*)>
+<!ATTLIST table
+    %color.attributes;
+    %paragraph.attributes;
+    %rectangle.attributes;
+    columns        CDATA   #IMPLIED
+    lastHeaderRow  CDATA   #IMPLIED
+    cellpadding    CDATA   #IMPLIED
+    cellspacing    CDATA   #IMPLIED
+    widths         CDATA   #IMPLIED
+>
+
+<!ELEMENT row (cell*)>
+<!ELEMENT cell (%chunk.content; | %phrase.content; | paragraph | image)*>
+<!ATTLIST cell
+    %color.attributes;
+    %phrase.attributes;
+    %indentation.attributes;
+    %rectangle.attributes;
+    colspan    CDATA   #IMPLIED
+    rowspan    CDATA   #IMPLIED
+    header     CDATA   #IMPLIED
+    nowrap     CDATA   #IMPLIED
+>
+
+<!ELEMENT image EMPTY>
+<!ATTLIST image
+    url             CDATA   #REQUIRED
+    align           CDATA   #IMPLIED
+    underlying      CDATA   #IMPLIED
+    textwrap        CDATA   #IMPLIED
+    alt             CDATA   #IMPLIED
+    absolutex       CDATA   #IMPLIED
+    absolutey       CDATA   #IMPLIED
+    plainwidth      CDATA   #IMPLIED
+    plainheight     CDATA   #IMPLIED
+    rotation        CDATA   #IMPLIED
+>
+
+<!ELEMENT annotation EMPTY>
+<!ATTLIST annotation
+    title       CDATA   #IMPLIED
+    content     CDATA   #IMPLIED
+>
+
+<!ELEMENT newpage EMPTY>
+<!ELEMENT newline EMPTY>

@@ -1,0 +1,70 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Enrollment
+
+@{
+    ViewBag.Title = "Student Result Entry";
+}
+
+<h2>Student Result Entry</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+<div class="form-horizontal">
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+        <div class="control-group">
+            <div class="control-label">
+                @Html.Label("Student")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("StudentId", String.Empty)
+                @Html.ValidationMessageFor(model => model.StudentId)
+            </div>
+        </div>
+        <div class ="control-group">
+            @Html.Partial("~/Views/Shared/_StudentDetails.cshtml", Model)
+        </div>
+        <div class ="control-group">
+            <div class="control-label">
+                @Html.Label("Course")
+            </div>
+            <div class="controls">
+                @Html.Partial("_Course")
+                @Html.ValidationMessageFor(model => model.CourseId)
+            </div>
+            <div class="control-label">
+                @Html.Label("Grade")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("GradeLetterId","<Select>")
+                @Html.ValidationMessageFor(model => model.GradeLetterId)
+            </div>
+            <div class="controls">
+                <input type="submit" value="Create" class="btn"/>
+            </div>
+
+        </div>
+    }
+</div>
+@*<h4 style="color: red">@ViewBag.ErrorMessage</h4>*@
+            <div class="alert-success">@ViewBag.Saved </div>
+            <div class="alert-error">@ViewBag.Message</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#StudentId').change(function () {
+            var id = $('#StudentId :selected').val();
+            $('#CourseId').load('@Url.Action("SelectEnrolledCourseForStudent")', { studentId: id });
+            $('#StudentDetails').load('@Url.Action("SelectStudent")', { studentId: id });
+        });
+    });
+</script>
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Back to List", "Index")
+    </li>
+</ul>
+<div>
+    
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

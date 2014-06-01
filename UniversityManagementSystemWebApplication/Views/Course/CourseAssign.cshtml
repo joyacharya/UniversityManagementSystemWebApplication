@@ -1,0 +1,103 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Course
+@{
+    ViewBag.Title = "CourseAssign";
+    ViewBag.Active = "Course";
+}
+
+<h2>CourseAssign</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+
+
+<script type="text/javascript">
+    $(function ()  //document ready
+    {
+        $('#submitButton').click(function () {
+            var val1 = parseFloat($('#RemainingCredit').val());
+            var val2 = parseFloat($('#Credit').val());
+            var val = val1 - val2;
+            if (val < 0) {
+                var flag = confirm('Remaining credit is '+val+'. Are you sure, you want to assign more credit?');
+                if (flag == false)
+                    return false;
+            }
+            return true;
+        });00
+    });
+</script>
+<div class="form-horizontal">@using (Html.BeginForm())
+{
+    <fieldset>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.Label("Department")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("DepartmentId", "<Select>")
+            </div>
+
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.Label("Teacher")
+            </div>
+            <div class="controls">
+                @Html.Partial("_Teacher")
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Partial("_TeacherDetails")
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.Label("Course")
+            </div>
+            <div class="controls">
+                @Html.Partial("_Course")
+            </div>
+        </div>
+        <div class="control-group">
+            @Html.Partial("_CourseDetails")
+        </div>
+    </fieldset>
+    <div class="control-group">
+        <div class="controls">
+            <input id="submitButton" class="btn" type="submit" value="CourseAssign" />
+        </div>
+    </div>
+}
+</div>
+<div class="alert-error">@ViewBag.Message</div>
+<div class="alert-success">@ViewBag.Success</div>
+<ul class="pager">
+    <li class="previous">
+    @Html.ActionLink("Back to List", "Index")
+    </li>
+</ul>
+ 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DepartmentId').change(function () {
+            var id = $('#DepartmentId :selected').val();
+            $('#TeacherId').load('@Url.Action("SelectDepartmentForTeacher")', { departmentId: id });
+            $('#CourseId').load('@Url.Action("SelectDepartmentForCourse")', { DepartmentId: id });
+        });
+        $('#TeacherId').change(function () {
+            var id = $('#TeacherId :selected').val();
+            $('#TeacherDetails').load('@Url.Action("SelectTeacher")', { teacherId: id });
+        });
+        $('#CourseId').change(function () {
+            var id = $('#CourseId :selected').val();
+            $('#CourseDetails').load('@Url.Action("SelectCourse")', { courseId: id });
+        });
+        
+        $('#TeacherDetails').load('@Url.Action("SelectTeacher")', { teacherId: id });
+        $('#CourseDetails').load('@Url.Action("SelectCourse")', { courseId: id });
+    });
+</script>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

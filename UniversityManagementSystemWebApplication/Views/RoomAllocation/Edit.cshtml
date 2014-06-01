@@ -1,0 +1,77 @@
+﻿@model UniversityManagementSystemWebApplication.Models.ClassRoomAllocation
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>ClassRoomAllocation</legend>
+
+        @Html.HiddenFor(model => model.ClassRoomAllocationId)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DepartmentId, "Department")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("DepartmentId", String.Empty)
+            @Html.ValidationMessageFor(model => model.DepartmentId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CourseId, "Course")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("CourseId", String.Empty)
+            @Html.ValidationMessageFor(model => model.CourseId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ClassRoomId, "ClassRoom")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("ClassRoomId", String.Empty)
+            @Html.ValidationMessageFor(model => model.ClassRoomId)
+        </div>
+
+       <div class="editor-label">
+            @Html.LabelFor(model => model.DayId, "Day")
+        </div>
+        <div class="editor-field">
+             @Html.DropDownList("DayId", String.Empty)
+            @Html.ValidationMessageFor(model => model.DayId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeFrom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeFrom)
+            @Html.ValidationMessageFor(model => model.TimeFrom)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TimeTo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TimeTo)
+            @Html.ValidationMessageFor(model => model.TimeTo)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

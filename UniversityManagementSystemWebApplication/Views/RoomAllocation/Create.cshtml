@@ -1,0 +1,90 @@
+﻿@model UniversityManagementSystemWebApplication.Models.ClassRoomAllocation
+
+@{
+    ViewBag.Title = "Allocate Class Room";
+    ViewBag.Active = "Class Room Allocation";
+}
+
+<h2>Allocate Class Room</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+
+<div class="form-horizontal">
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.DepartmentId, "Department")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("DepartmentId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DepartmentId)
+            </div>
+
+            <div class="control-label">
+                @Html.LabelFor(model => model.CourseId, "Course")
+            </div>
+            <div class="controls">
+                @Html.Partial("_Course")
+                @Html.ValidationMessageFor(model => model.CourseId)
+            </div>
+
+            <div class="control-label">
+                @Html.LabelFor(model => model.ClassRoomId, "ClassRoom")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("ClassRoomId", String.Empty)
+                @Html.ValidationMessageFor(model => model.ClassRoomId)
+            </div>
+
+            <div class="control-label">
+                @Html.LabelFor(model => model.DayId, "Day")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("DayId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DayId)
+            </div>
+
+            <div class="control-label">
+                @Html.LabelFor(model => model.TimeFrom)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.TimeFrom)
+                @Html.ValidationMessageFor(model => model.TimeFrom)
+            </div>
+
+            <div class="control-label">
+                @Html.LabelFor(model => model.TimeTo)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.TimeTo)
+                @Html.ValidationMessageFor(model => model.TimeTo)
+            </div>
+                  
+            <div class="controls">
+                <input type="submit" value="Allocate Class Room" class="btn" />
+            </div>
+        </div>
+    }
+</div>
+<div class="alert-error">@ViewBag.ErrorMessage</div>
+<div class="alert-success">@ViewBag.Success</div>
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Back to List", "Index")
+    </li>
+</ul>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DepartmentId').change(function () {
+            var id = $('#DepartmentId :selected').val();
+            $('#CourseId').load('@Url.Action("SelectDepartmentForCourse")', { DepartmentId: id });
+        });
+
+    });
+</script>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,13 @@
+﻿.message-success1 {
+    font-family: inherit;
+    font-style: italic;
+    font-size: medium;
+    color: green;
+}
+
+.message-error1 {
+    font-family: inherit;
+    font-style: italic;
+    font-size: medium;
+    color: red;
+}

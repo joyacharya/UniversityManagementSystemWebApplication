@@ -1,0 +1,57 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Course
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Course</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Credit)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Credit)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Semester.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Semester.Name)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CourseId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

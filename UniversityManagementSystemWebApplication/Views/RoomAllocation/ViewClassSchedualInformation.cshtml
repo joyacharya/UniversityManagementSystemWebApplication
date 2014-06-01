@@ -1,0 +1,71 @@
+﻿@*@model UniversityManagementSystemWebApplication.Models.ClassRoomAllocation*@
+@{
+    ViewBag.Title = "View Class Schedual Information";
+    ViewBag.Active = "Class Room Allocation";
+    List<string> codes = ViewBag.CourseCodes;
+    List<string> names = ViewBag.CourseNames;
+    List<string> scheduals = ViewBag.Scheduals;
+
+    //int lenght = codes.Count;
+}
+
+<h2>View Class Schedual Information</h2>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryui")
+
+
+<div class="form-horizontal">
+    @using (Html.BeginForm())
+    {
+        <div class="control-group">
+            <div class="contorl-label">
+                   @Html.Label("Department")            
+            </div>
+            <div class="controls">
+                    @Html.DropDownList("DepartmentId","<Select>")
+            </div>
+        </div>      
+    }
+</div>
+<table class="table table-hover">
+        <tr>
+            <th>
+                Course Code
+            </th>
+            <th>
+                Course Name
+            </th>
+            <th>
+                Schedual Infromation
+            </th>
+        </tr>
+   @for (int i = 0; i < codes.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(item => codes[i])
+            </td>
+            <td>
+                @Html.DisplayFor(item => names[i])
+            </td>
+            <td>
+                @Html.DisplayFor(item => scheduals[i])
+            </td>
+        </tr>
+    }
+    
+</table>
+
+<ul class="pager">
+    <li class="previous">
+        @Html.ActionLink("Back to List", "Index")
+    </li>
+</ul>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#DepartmentId').change(function () {
+            //alert('Test');
+            $(this).parents('form').submit();
+        });
+    });
+</script>

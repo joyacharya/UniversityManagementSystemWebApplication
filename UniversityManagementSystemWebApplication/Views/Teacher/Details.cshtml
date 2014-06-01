@@ -1,0 +1,57 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Teacher
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Teacher</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContractNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContractNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Designation.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Designation.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditToBeTaken)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditToBeTaken)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.TeacherId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

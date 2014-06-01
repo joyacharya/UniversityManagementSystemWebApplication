@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Course>
+@{
+    ViewBag.Title = "Index";
+    ViewBag.Active = "View Course State";
+}
+
+<div class="form-horizontal">
+    <br />
+    <br />
+    <br />
+    @using (Html.BeginForm())
+    {
+        <div class="control-group">
+            <div class="control-label">
+                @Html.Label("Department")
+            </div>
+            <div class="controls">
+                @Html.DropDownList("departmentId", String.Empty)
+            </div>
+        </div>
+    }      
+</div>
+
+<div class="controls" id="section-data">
+    @Html.Partial("~/Views/ViewCourseState/_CourseInformation.cshtml", Model)
+</div>
+
+
+        
+@section Scripts {
+   @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+            function FillData(id) {
+                $("#section-data").load("ViewCourseState/FilteredDepartment", { departmentId: id });
+            }
+
+            $(function () {
+                $("#departmentId").change(function () {
+                    var id = $("#departmentId").val();
+                    FillData(id);
+                    //alert('test');
+                });
+            });
+        </script>
+}
+
+

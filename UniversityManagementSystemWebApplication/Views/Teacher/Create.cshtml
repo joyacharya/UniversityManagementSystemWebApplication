@@ -1,0 +1,93 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Teacher
+
+@{
+    ViewBag.Title = "Create New Teacher";
+    ViewBag.Active = "Teacher";
+}
+
+<h2>Create New Teacher</h2>
+
+<div class="form-horizontal">
+    @using (Html.BeginForm()) {
+              
+        @Html.ValidationSummary(true)
+        <fieldset>
+        
+            <div class="control-group">
+                            
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Address)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Address)
+                    @Html.ValidationMessageFor(model => model.Address)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.ContractNo)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.ContractNo)
+                    @Html.ValidationMessageFor(model => model.ContractNo)
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.DesignationId, "Designation")
+                </div>
+
+                <div class="controls">
+                    @Html.DropDownList("DesignationId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.DesignationId)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.DepartmentId, "Department")
+                </div>
+                <div class="controls">
+                    @Html.DropDownList("DepartmentId", String.Empty)
+                    @Html.ValidationMessageFor(model => model.DepartmentId)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.CreditToBeTaken)
+                </div>
+                <div class="controls">
+                    @Html.EditorFor(model => model.CreditToBeTaken)
+                    @Html.ValidationMessageFor(model => model.CreditToBeTaken)
+                </div>
+
+                <div class="controls">
+                    <input type="submit" value="Create" class="btn"/>
+                </div>
+            </div>
+        </fieldset>
+    }
+</div>
+<div class="alert-success">@ViewBag.Message</div>
+<ul class="pager">
+    <li class="previous">
+    @Html.ActionLink("Back to Teacher List", "Index")
+    </li>
+</ul>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

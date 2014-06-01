@@ -1,0 +1,87 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Enrollment>
+@{
+    Layout = null;
+}
+
+<itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF">
+    <table width="100%" cellpadding="0.5" cellspacing="0.5" widths="30;70" borderwidth="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+        <row>
+            <cell>
+                <chunk style="font-weight:bold;">Today:</chunk>
+            </cell>
+            <cell>
+                <chunk style="">@DateTime.Now.ToString("MM/dd/yyyy")</chunk>
+            </cell>
+        </row>
+    </table>
+
+    <table width="100%" cellpadding="0.5" cellspacing="0.5" widths="30;70" borderwidth="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+        @foreach (var item in Model)
+        {
+            <row>
+                <cell>
+                    <chunk>Name of Student</chunk>
+                </cell>
+                <cell>
+                    <chunk>@Html.DisplayFor(modelItem => item.Student.Name)</chunk>
+                </cell>
+            </row>
+            <row>
+                <cell>
+                    <chunk>Email of Student</chunk>
+                </cell>
+                <cell>
+                    <chunk>@Html.DisplayFor(modelItem => item.Student.Email)</chunk>
+                </cell>
+            </row>
+            <row>
+                <cell>
+                    <chunk>Department of Student</chunk>
+                </cell>
+                <cell>
+                    <chunk>@Html.DisplayFor(modelItem => item.Student.Department.Name)</chunk>
+                </cell>
+            </row>
+            break;
+        }
+        
+    </table>
+    
+    <table class="table table-hover" width="100%" cellpadding="0.5" cellspacing="0.5" widths="30;70" borderwidth="1.0" left="false" right="false" top="false" bottom="false" red="0" green="0" blue="0">
+     <row>
+         <cell>
+             <chunk>Course Code</chunk>
+         </cell>
+         <cell>
+             <chunk>Course Name</chunk>
+         </cell>
+         <cell>
+             <chunk>Grade Awarded</chunk>
+         </cell>
+    </row>
+    
+    @foreach (var item in Model)
+    {
+        <row>
+            <cell>
+                <chunk>@Html.DisplayFor(modelItem=>item.Course.Code)</chunk>
+            </cell>
+            <cell>
+                <chunk>@Html.DisplayFor(modelItem=>item.Course.Name)</chunk>
+            </cell>
+            <cell>
+                @if (item.GradeLetter == null)
+                {
+                  <chunk> @Html.Label("Grade not assign yet ")</chunk>
+                }
+                else
+                {
+                 <chunk>@Html.DisplayFor(modelItem=>item.GradeLetter.Name) </chunk>  
+                }
+               
+            </cell>
+        </row>
+        
+    }    
+    </table>
+</itext>

@@ -1,0 +1,85 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Student
+
+@{
+    ViewBag.Title = "Create Student";
+    ViewBag.Active = "Student";
+}
+<h2>Create Student</h2>
+<link href="~/Content/Message.css" rel="stylesheet" />
+<div class="form-horizontal">@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Student</legend>
+        
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.Name)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.Email)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Email)
+                @Html.ValidationMessageFor(model => model.Email)
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.ContactNo)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.ContactNo)
+                @Html.ValidationMessageFor(model => model.ContactNo)
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="control-label">
+                @Html.LabelFor(model => model.Date)
+            </div>
+            <div class="controls">
+                @Html.EditorFor(model => model.Date)
+                @Html.ValidationMessageFor(model => model.Date)
+            </div>
+        </div>
+
+        <div class="control-group">
+        <div class="control-label">
+            @Html.LabelFor(model => model.DepartmentId, "Department")
+        </div>
+            <div class="controls">
+                @Html.DropDownList("DepartmentId", String.Empty)
+                @Html.ValidationMessageFor(model => model.DepartmentId)
+            </div>
+            <div class="controls"><input type="submit" value="Create" class="btn"/></div>
+        </div>
+    </fieldset>
+    <div class="alert-success">@ViewBag.Message</div>
+}
+</div>
+<ul class="pager">
+    <li class="previous">
+    @Html.ActionLink("Back to Student List", "Index")
+    </li>
+</ul>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/themes/base/css")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#Date").datepicker({
+                changeMonth: true,
+                changeYear: true
+            });
+        });
+    </script>
+}

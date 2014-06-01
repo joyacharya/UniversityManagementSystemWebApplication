@@ -1,0 +1,60 @@
+﻿@model UniversityManagementSystemWebApplication.Models.Teacher
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Teacher</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ContractNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ContractNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Designation.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Designation.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CreditToBeTaken)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CreditToBeTaken)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

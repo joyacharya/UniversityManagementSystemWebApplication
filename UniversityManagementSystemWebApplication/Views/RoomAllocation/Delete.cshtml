@@ -1,0 +1,60 @@
+﻿@model UniversityManagementSystemWebApplication.Models.ClassRoomAllocation
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>ClassRoomAllocation</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Department.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Department.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Course.Code)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Course.Code)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ClassRoom.RoomNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ClassRoom.RoomNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DayId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Day.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeFrom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeFrom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TimeTo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TimeTo)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

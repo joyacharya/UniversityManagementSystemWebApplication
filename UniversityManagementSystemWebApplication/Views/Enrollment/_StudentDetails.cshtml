@@ -1,0 +1,27 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Enrollment>
+
+<div id ="StudentDetails">
+    @foreach (var item in Model)
+    {
+        <div class="control-label">
+            @Html.LabelFor(model => item.Student.Name)
+        </div>
+        <div class="controls">
+            @Html.TextBoxFor(model => item.Student.Name, new { disabled = "disabled", @readonly = "readonly" })
+        </div>
+        <div class="control-label">
+            @Html.LabelFor(model => item.Student.Email)
+        </div>
+        <div class="controls">
+            @Html.TextBoxFor(model => item.Student.Email, new { disabled = "disabled", @readonly = "readonly" })
+        </div>
+    
+        <div class="control-label">
+            @Html.LabelFor(model => item.Student.Department.Code)
+        </div>
+        <div class="controls">
+            @Html.TextBoxFor(model => item.Student.Department.Code, new { disabled = "disabled", @readonly = "readonly" })
+        </div>
+        break;
+    }
+</div>

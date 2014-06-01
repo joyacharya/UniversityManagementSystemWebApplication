@@ -1,0 +1,37 @@
+﻿@model IEnumerable<UniversityManagementSystemWebApplication.Models.Course>
+
+<h2>Coure Information</h2>
+<table class="table table-hover">
+    <tr>
+        <th>
+            Code
+        </th>
+        <th>
+            Name/Title
+        </th>
+        <th>
+            Semester
+        </th>
+        <th>
+            Assign To
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Semester.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.Name)
+        </td>
+    </tr>
+}
+
+</table>
